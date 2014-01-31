@@ -237,6 +237,16 @@ class PageDataOperator
 				}
 			}while(!$InfoboxLimit);
 
+                        $orderedInfoboxItems = array();
+
+                        // Added code to sort objects by object priority
+                        foreach( $InfoboxItems['left'] as $contentObject )
+                        {
+                            $orderedInfoboxItems[ $contentObject->Priority ] = $contentObject;
+                        }
+                        ksort( $orderedInfoboxItems );
+                        $InfoboxItems['left'] = $orderedInfoboxItems;
+
 			$isInfoboxAccumulating = false;
 			foreach($InfoboxItems as $Key=>$Item){
 				$ItemCount = count($Item);
